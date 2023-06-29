@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {generateLogo} = require('./shapes.js');
+const {logoGenerator} = require('./shapes.js');
 
 
 //prompt user with 3 charater length text, text color, shape, shape color
@@ -20,7 +20,7 @@ inquirer
     {
         type:'list',
         message:'Choose the following shape for your logo',
-        name: 'list',
+        name: 'shape',
         choices: [
             {title:'square', value:'square'},
             {title:'circle', value:'circle'},
@@ -34,7 +34,7 @@ inquirer
    },
 ])
 .then((response) => {
-    logoContent = generateLogo(response);
+    logoContent = logoGenerator(response);
     fs.writeFile('logo.svg', logoContent, (err) =>
     err ? console.error(err) : console.log('Success!logo.svg has been created')
     )
